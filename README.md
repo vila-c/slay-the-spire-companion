@@ -11,122 +11,137 @@
   <b>EN</b> | <a href="#中文说明">中文</a>
 </p>
 
-A desktop pet companion for **Slay the Spire** that watches your game in real time — analyzing your deck, suggesting card picks, and warning you before dangerous fights. Like having a coach sitting next to you while you climb the Spire.
+<p align="center">
+  A desktop pet that watches you play Slay the Spire — analyzing your deck, warning you before dangerous fights, and cheering you on.
+</p>
 
-## Features
+---
 
-- **Desktop Pet** — A draggable character sprite that lives on your desktop, with breathing animation and mood glow
-- **Real-time Deck Analysis** — Automatically detects your character, deck, relics, and floor whenever the save file updates
-- **Deck Scoring** — Rates your deck from S to D (0–100) based on archetype completeness, relic synergy, and curse penalty
-- **Archetype Detection** — Identifies 14+ build archetypes across all 4 characters (Strength, Block, Exhaust, Poison, Shiv, Frost, Stance Dance, etc.)
-- **Card Advice** — Recommends which cards to pick, remove, and upgrade based on your current deck and relics
-- **Combat Tips** — Proactive bubble warnings when entering monster/elite/boss rooms with strategy advice
-- **Relic Synergy** — Notifies you when you pick up a relic that combos with cards in your deck
-- **Event & Shop Advice** — Contextual tips for event choices, shop purchases, and rest site decisions
-- **Neow Blessing Guide** — Scores each Neow option and recommends the best pick
-- **Act Transitions** — Motivational messages when entering a new act
+## What Does It Do?
 
-## Requirements
+| | |
+|---|---|
+| **Deck Score** | Rates your deck S–D as you play |
+| **Build Advice** | Tells you which cards to pick, remove, or upgrade |
+| **Combat Warnings** | Pops up tips before elite and boss fights |
+| **Relic Tips** | Explains what your new relic does and what cards work with it |
+| **Neow Guide** | Scores every starting bonus option and picks the best one |
+| **Mood Reactions** | Pet glows red when something is wrong, bounces when things are great |
 
-- **Slay the Spire** (Steam version, Windows)
-- **Python 3.10+**
-- **ModTheSpire** + **BaseMod** (for real-time combat data)
+---
 
-## Installation
+## Installation (Step by Step)
 
-### 1. Python Companion (Required)
+> No programming experience required. Just follow these steps in order.
 
-```bash
-git clone https://github.com/vila-c/slay-the-spire-mod.git
-cd slay-the-spire-mod
-pip install -r requirements.txt
-```
+### Step 1 — Install Python
 
-### 2. Java Mod (Optional, for combat data)
+1. Go to **https://www.python.org/downloads/**
+2. Click the big yellow **Download Python** button
+3. Run the installer
+4. **Important:** Tick the box **"Add Python to PATH"** before clicking Install
 
-The Java mod exports real-time game state (enemy intents, event options, etc.) that the companion uses for combat tips.
+### Step 2 — Download This Project
 
-Pre-built JAR is included at `sts-mod/companion-agent.jar`. Copy it to your game's `mods/` folder:
+Click the green **Code** button at the top of this page → **Download ZIP** → unzip to any folder (e.g. your Desktop)
 
-```bash
-copy sts-mod\companion-agent.jar "C:\Program Files (x86)\Steam\steamapps\common\SlayTheSpire\mods\"
-```
+### Step 3 — Install Dependencies
 
-Or build from source:
+Open the unzipped folder, then double-click **`start.bat`**
 
-```bash
-cd sts-mod
-python build_mod.py
-```
+> If Windows shows a warning, click **"More info" → "Run anyway"**
 
-> Requires `tools/ecj.jar` (Eclipse Compiler) and game JARs on classpath.
+That's it! The pet should appear on your screen.
 
-### 3. Run
+### Step 4 — Install the Game Mod (Recommended)
 
-```bash
-python main.py
-```
+The mod lets the companion see what's happening inside the game (enemy moves, event options, etc.).
 
-Or double-click `start.bat` / `start.pyw`.
+1. Make sure **ModTheSpire** and **BaseMod** are installed (get them from the Steam Workshop)
+2. Copy `sts-mod/companion-agent.jar` into your game's `mods/` folder:
+   ```
+   C:\Program Files (x86)\Steam\steamapps\common\SlayTheSpire\mods\
+   ```
+3. Launch Slay the Spire through ModTheSpire as usual
 
-## Usage
+---
 
-| Action | Effect |
+## How to Use
+
+| Action | Result |
 |--------|--------|
-| Left-click pet | Toggle deck analysis panel |
-| Right-click pet | Menu (details / settings / quit) |
-| Drag pet | Move to any position |
-| Pet glows red & bounces | Important warning — check the bubble! |
+| Left-click the pet | Open / close the deck analysis panel |
+| Right-click the pet | Menu (details / settings / quit) |
+| Drag the pet | Move it anywhere on screen |
+| Pet glows red & bounces | Important warning — click it! |
 
-## Scoring System
+---
+
+## Deck Score Guide
 
 | Grade | Score | Meaning |
 |-------|-------|---------|
-| S | 85+ | Strong deck, aim for the Heart |
-| A | 70–84 | Good, push forward |
-| B | 50–69 | Average, reinforce your build |
-| C | 30–49 | Weak, pick carefully |
+| S | 85+ | Strong deck — go for the Heart! |
+| A | 70–84 | Good shape, keep pushing |
+| B | 50–69 | Average — look for key cards |
+| C | 30–49 | Weak — pick carefully |
 | D | <30 | Danger zone |
 
-## Supported Archetypes
+---
 
-| Character | Archetypes |
-|-----------|-----------|
+## Supported Builds
+
+| Character | Builds |
+|-----------|--------|
 | Ironclad | Strength, Block, Exhaust, Bleed/Rage |
 | Silent | Shiv, Poison, Discard, Infinite Loop |
-| Defect | Lightning, Frost, Claw, Dark/Creative |
+| Defect | Lightning, Frost, Claw, Dark/Creative AI |
 | Watcher | Stance Dance, Scry/Divination, Retain Divinity |
 
-## Project Structure
+---
 
-```
-main.py                  # Entry point & main loop
-core/
-  archetypes.py          # Build archetype detection
-  card_advisor.py        # Card pick/remove/upgrade advice
-  combat_advisor.py      # Monster strategy database
-  config.py              # User settings persistence
-  decoder.py             # Save file decryption (base64 + XOR)
-  event_advisor.py       # Event choice recommendations
-  mem_probe.py           # Memory reading utilities
-  scorer.py              # Deck scoring engine (0-100)
-  shop_advisor.py        # Shop purchase advice
-  upgrade_advisor.py     # Campfire upgrade priority
-  watcher.py             # Save file change monitor
-ui/
-  pet_widget.py          # Desktop pet (frameless, draggable, animated)
-  bubble.py              # Detail analysis panel
-  chat_bubble.py         # Proactive chat bubbles & tips
-  toggle_button.py       # Show/hide toggle button
-sts-mod/
-  src/stscompanion/      # Java mod source (ModTheSpire)
-  companion-agent.jar    # Pre-built mod JAR
-assets/sprites/          # Character sprites & icons
-```
+## Troubleshooting
+
+**The pet doesn't appear**
+→ Make sure Python is installed and "Add to PATH" was ticked. Try running `python main.py` in the folder.
+
+**"Python is not recognized" error**
+→ Reinstall Python and tick **"Add Python to PATH"** this time.
+
+**No combat tips appear**
+→ The Java mod isn't installed. Follow Step 4 above.
+
+**Pet appears but shows no deck info**
+→ You need to have a save file in progress. Start a new run in-game and the pet will detect it.
+
+---
 
 ## License
 
-This project is for personal and educational use. Slay the Spire is developed by [MegaCrit](https://www.megacrit.com/).
+[CC BY-NC-SA 4.0](LICENSE) — Free to use and share, no commercial use allowed.
+
+This is an unofficial fan project and is not affiliated with or endorsed by MegaCrit.
+Slay the Spire is a trademark of MegaCrit LLC.
+
+---
+
+## Support the Author / 支持作者
+
+If this companion helped you climb higher, consider buying me a milk tea!
+
+如果这个小伴侣帮到了你，请作者喝杯奶茶吧！
+
+<p align="center">
+
+**Buy Me A Coffee**: [buymeacoffee.com/vila-c](https://buymeacoffee.com/vila-c)
+
+**WeChat Pay / 微信支付 &nbsp;&nbsp; Alipay / 支付宝**
+
+<img src="assets/donate/wechat.jpg" width="180" /> &nbsp;&nbsp; <img src="assets/donate/Alipay.jpg" width="180" />
+
+</p>
+
+<p align="center">Made with ❤️ by <a href="https://github.com/vila-c">vila-c</a></p>
 
 ---
 
@@ -138,82 +153,83 @@ This project is for personal and educational use. Slay the Spire is developed by
   <a href="#sts-companion---slay-the-spire-desktop-pet">EN</a> | <b>中文</b>
 </p>
 
-一个杀戮尖塔的桌面宠物伴侣 —— 实时分析你的牌组，给出选牌/升级/移除建议，在危险战斗前主动提醒。就像一个坐在你旁边看你打牌的教练。
+<p align="center">
+  一个陪你打杀戮尖塔的桌面宠物——实时分析牌组、进房间前提醒危险、拿遗物时告诉你怎么用。
+</p>
 
-## 功能
+---
 
-- **桌面宠物** — 可拖拽的角色立绘，常驻桌面，有呼吸动画和情绪光晕
-- **实时牌组分析** — 每次进入新楼层或拿牌后自动更新
-- **牌组评分** — S/A/B/C/D 五档评分（0-100），基于流派完整度、遗物配合、诅咒惩罚
-- **流派识别** — 自动识别 14+ 种流派（力量、格挡、消耗、毒、飞刀、冰霜、姿态循环等）
-- **选牌建议** — 根据当前牌组和遗物推荐拿牌、移除、升级
-- **战斗提醒** — 进入怪物/精英/Boss 房间时主动弹出策略建议
-- **遗物联动** — 拿到遗物时提示与牌组中卡牌的配合
-- **事件/商店建议** — 事件选项建议、商店购买建议、营地决策建议
-- **Neow 祝福指南** — 对每个 Neow 选项评分，推荐最优选择
-- **幕间台词** — 进入新幕时的鼓励台词
+## 它能做什么？
 
-## 环境要求
+| | |
+|---|---|
+| **牌组评分** | 实时给你的牌组打 S 到 D 的分数 |
+| **流派建议** | 告诉你该拿哪张牌、移除哪张牌、升级哪张牌 |
+| **战斗预警** | 进精英/Boss 房间前弹出策略提示 |
+| **遗物提示** | 拿到遗物时说明用法和配合牌 |
+| **Neow 指南** | 给每个开局选项评分，帮你选最好的 |
+| **情绪反应** | 牌组危险时发红光，状态好时开心跳动 |
 
-- **杀戮尖塔**（Steam 版，Windows）
-- **Python 3.10+**
-- **ModTheSpire** + **BaseMod**（用于实时战斗数据）
+---
 
-## 安装
+## 安装步骤（零基础也能搞定）
 
-### 1. Python 伴侣（必需）
+> 按顺序来，不需要任何编程知识。
 
-```bash
-git clone https://github.com/vila-c/slay-the-spire-mod.git
-cd slay-the-spire-mod
-pip install -r requirements.txt
-```
+### 第一步 — 安装 Python
 
-### 2. Java Mod（可选，获取战斗数据）
+1. 打开 **https://www.python.org/downloads/**
+2. 点击黄色大按钮 **Download Python**
+3. 运行安装程序
+4. **重要：** 安装前一定要勾选 **"Add Python to PATH"** 这个选项
 
-Java Mod 用于导出实时游戏状态（敌方意图、事件选项等），让伴侣能给出更精准的战斗建议。
+### 第二步 — 下载本项目
 
-预编译 JAR 已包含在 `sts-mod/companion-agent.jar`，复制到游戏 `mods/` 目录即可：
+点击本页面上方绿色的 **Code** 按钮 → **Download ZIP** → 解压到任意文件夹（比如桌面）
 
-```bash
-copy sts-mod\companion-agent.jar "C:\Program Files (x86)\Steam\steamapps\common\SlayTheSpire\mods\"
-```
+### 第三步 — 启动宠物
 
-或从源码编译：
+打开解压后的文件夹，双击 **`start.bat`**
 
-```bash
-cd sts-mod
-python build_mod.py
-```
+> 如果 Windows 弹出安全警告，点 **"更多信息" → "仍要运行"**
 
-> 需要 `tools/ecj.jar`（Eclipse 编译器）和游戏 JAR 文件。
+完成！桌面宠物应该出现了。
 
-### 3. 运行
+### 第四步 — 安装游戏 Mod（推荐）
 
-```bash
-python main.py
-```
+Mod 可以让宠物看到游戏内部的信息（敌人动作、事件选项等），建议安装。
 
-或双击 `start.bat` / `start.pyw`。
+1. 确认已通过 Steam 创意工坊安装了 **ModTheSpire** 和 **BaseMod**
+2. 把 `sts-mod/companion-agent.jar` 复制到游戏的 `mods/` 文件夹：
+   ```
+   C:\Program Files (x86)\Steam\steamapps\common\SlayTheSpire\mods\
+   ```
+3. 通过 ModTheSpire 正常启动游戏
+
+---
 
 ## 使用方法
 
 | 操作 | 效果 |
 |------|------|
-| 左键单击宠物 | 弹出/关闭牌组详情面板 |
-| 右键单击宠物 | 菜单（查看详情 / 设置 / 退出） |
-| 拖拽宠物 | 移动到任意位置 |
-| 宠物跳动发红光 | 有重要警告，请查看气泡！ |
+| 左键单击宠物 | 打开 / 关闭牌组分析面板 |
+| 右键单击宠物 | 菜单（详情 / 设置 / 退出） |
+| 拖拽宠物 | 移动到屏幕任意位置 |
+| 宠物跳动发红光 | 有重要警告，点击查看！ |
+
+---
 
 ## 评分说明
 
 | 等级 | 分数 | 含义 |
 |------|------|------|
-| S | 85+ | 强力牌组，冲击心脏 |
+| S | 85+ | 强力牌组，冲击心脏！ |
 | A | 70-84 | 良好，正常推进 |
 | B | 50-69 | 中等，注意补强 |
 | C | 30-49 | 偏弱，重点选牌 |
 | D | <30 | 危险，谨慎行事 |
+
+---
 
 ## 流派覆盖
 
@@ -226,22 +242,45 @@ python main.py
 
 ---
 
-## Support the Author / 支持作者
+## 常见问题
 
-If this companion helped you climb higher, consider buying me a milk tea! 
+**宠物没有出现**
+→ 确认 Python 已安装且勾选了"Add to PATH"。可以尝试在文件夹里运行 `python main.py`。
+
+**提示"Python is not recognized"**
+→ 重新安装 Python，这次记得勾选 **"Add Python to PATH"**。
+
+**没有战斗提示**
+→ 没有安装 Java Mod，请按照第四步操作。
+
+**宠物出现了但没有牌组信息**
+→ 需要游戏中有存档。开一局新游戏，宠物会自动识别。
+
+---
+
+## 许可证
+
+[CC BY-NC-SA 4.0](LICENSE) — 可以自由使用和分享，禁止商业用途。
+
+本项目是非官方粉丝作品，与 MegaCrit 官方无关。
+杀戮尖塔是 MegaCrit LLC 的注册商标。
+
+---
+
+## 支持作者 / Support the Author
 
 如果这个小伴侣帮到了你，请作者喝杯奶茶吧！
+
+If this companion helped you climb higher, consider buying me a milk tea!
 
 <p align="center">
 
 **Buy Me A Coffee**: [buymeacoffee.com/vila-c](https://buymeacoffee.com/vila-c)
 
-**WeChat Pay / 微信支付** | **Alipay / 支付宝**
+**微信支付 &nbsp;&nbsp; 支付宝**
 
-<img src="assets/donate/wechat.png" width="200" /> <img src="assets/donate/alipay.png" width="200" />
+<img src="assets/donate/wechat.png" width="180" /> &nbsp;&nbsp; <img src="assets/donate/alipay.png" width="180" />
 
 </p>
 
----
-
-Made with :heart: by [vila-c](https://github.com/vila-c) for the Slay the Spire community.
+<p align="center">用 ❤️ 为杀戮尖塔社区制作，作者 <a href="https://github.com/vila-c">vila-c</a></p>
