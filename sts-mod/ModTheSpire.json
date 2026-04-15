@@ -1,0 +1,9 @@
+{
+  "modid": "stscompanion",
+  "name": "STS Companion",
+  "description": "Desktop pet companion with real-time combat data export",
+  "version": "0.1.0",
+  "sts_version": "12-22-2020",
+  "mts_version": "3.30.0",
+  "dependencies": ["basemod"]
+}

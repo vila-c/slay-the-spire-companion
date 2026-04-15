@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Runtime / user-specific
+config.json
+combat_state.json
+debug.log
+
+# Java build artifacts
+sts-mod/out/
+
+# Dev tools (not for public repo)
+CLAUDE.md
+claude-code-memory-setup/
