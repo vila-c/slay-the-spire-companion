@@ -179,7 +179,7 @@ If this companion helped you climb higher, consider buying me a milk tea!
 ### 第一步 — 安装 Python
 
 1. 打开 **https://www.python.org/downloads/**
-2. 点击黄色大按钮 **Download Python**
+2. 点击黄色大按钮 **Download Python install manager**
 3. 运行安装程序
 4. **重要：** 安装前一定要勾选 **"Add Python to PATH"** 这个选项
 
