@@ -198,7 +198,7 @@ If this companion helped you climb higher, consider buying me a milk tea!
 Mod 可以让宠物看到游戏内部的信息（敌人动作、事件选项等），建议安装。
 
 1. 确认已通过 Steam 创意工坊安装了 **ModTheSpire** 和 **BaseMod**
-2. 把 `sts-mod/companion-agent.jar` 复制到游戏的 `mods/` 文件夹：
+2. 把 `sts-mod/companion-agent.jar` 复制到游戏的 `mods/` 文件夹（文件路径如下，记得是（X86）文件！）：
    ```
    C:\Program Files (x86)\Steam\steamapps\common\SlayTheSpire\mods\
    ```
