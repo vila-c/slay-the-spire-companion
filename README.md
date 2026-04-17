@@ -129,13 +129,11 @@ Slay the Spire is a trademark of MegaCrit LLC.
 
 If this companion helped you climb higher, consider buying me a milk tea!
 
-如果这个小伴侣帮到了你，请作者喝杯奶茶吧！
-
 <p align="center">
 
 **Buy Me A Coffee**: [buymeacoffee.com/vila-c](https://buymeacoffee.com/vila-c)
 
-**WeChat Pay / 微信支付 &nbsp;&nbsp; Alipay / 支付宝**
+**WeChat Pay &nbsp;&nbsp; Alipay**
 
 <img src="assets/donate/wechat.jpg" width="180" /> &nbsp;&nbsp; <img src="assets/donate/Alipay.jpg" width="180" />
 
