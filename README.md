@@ -125,7 +125,7 @@ Slay the Spire is a trademark of MegaCrit LLC.
 
 ---
 
-## Support the Author / 支持作者
+## Support the Author
 
 If this companion helped you climb higher, consider buying me a milk tea!
 
